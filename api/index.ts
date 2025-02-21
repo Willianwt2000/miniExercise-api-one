@@ -1,34 +1,45 @@
-const express = require('express');
-const app = express();
-app.use(express.json());
+const express = require('express')
+const app = express()
+
+app.get('/contactos', function (req, res) {
+  console.log(req.method)
+  res.send('Aqui van los contactos');
+})
+app.get('/clientes', function (req, res) {
+  res.send('Aqui van los clientes');
+})
+app.get('/empresas', function (req, res) {
+  res.send('Aqui van las empresas');
+})
+app.get('/catalogo', function (req, res) {
+  res.send('Aqui van los catalogos');
+})
 
 
-const port = process.env.PORT || 8000;
-let statusMessage;
-
-app.list(port, () => {
-  statusMessage = console.log(`Listening on port...:${port}`);
+app.delete('/contactos', (req, res) => {
+  res.send('Aqui se borran los contactos');
 });
 
+app.delete('/clientes', (req, res) => {
+  res.send('Aqui se borran los clientes');
+});
 
-//Elements
+app.delete('/empresas', (req, res) => {
+  res.send('Aqui se borran las empresas');
+});
 
-// Definir el tipo correcto (opcional pero recomendado)
-type Student = { id: number; name: string };
+app.delete('/catalogos', (req, res) => {
+  res.send('Aqui se borran los catalogos');
+});
 
-// Declarar el array de estudiantes correctamente
-let students: Student[] = [
-  { id: 1, name: "Jose" },
-  { id: 2, name: "Jose" },
-  { id: 3, name: "Jose" },
-  { id: 4, name: "Jose" },
-  { id: 5, name: "Jose" }
-];
+// Difícil - Accediendo a request params
+app.get('/contactos/:id', (req, res) => {
+  const { id } = req.params;
+  res.send(`Aqui va el contacto ${id}`);
+});
 
-let users: [] = [];
-let id;
+const PORT = 3000;
 
-
-app.get(`/status`,(req, res) => {
-  return res.status(200).json({mensaje: statusMessage});
-}); 
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
