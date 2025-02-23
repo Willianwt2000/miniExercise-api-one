@@ -3,19 +3,19 @@ let contacts = [
   {
     id: 1,
     fullName: "Juan Perez",
-    phoneNumber: 8097884566,
+    phoneNumber: "809-788-4566",
     email: "juan.perez@example.com"
   },
   {
     id: 2,
     fullName: "Ana Gomez",
-    phoneNumber: 8496523354,
+    phoneNumber: "849-652-3354",
     email: "ana.gomez@example.com"
   },
   {
     id: 3,
     fullName: "Carlos Sanchez",
-    phoneNumber: 8295563655,
+    phoneNumber: "829-556-3655",
     email: "carlos.sanchez@example.com"
   }
 ];
