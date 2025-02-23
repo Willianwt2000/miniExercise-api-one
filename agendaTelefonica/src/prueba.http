@@ -1,13 +1,10 @@
- GET  http://localhost:3000/api/contacts/
 
+PATCH  http://localhost:3000/api/contacts/ 
+Content-Type: application/json
 
- ###
-
- PUT  http://localhost:3000/api/contacts/
-
-   {
-    "id": 4,
-    "fullName": "willian",
-    "phoneNumber": 8096656366,
-    "email": "carlos.sanchez@example.com"
-  }
+{
+  "id": 1,
+  "fullName": "Ana Carmen",
+  "phoneNumber": "8496523788",
+  "email": "ana.gomez@example.com"
+}

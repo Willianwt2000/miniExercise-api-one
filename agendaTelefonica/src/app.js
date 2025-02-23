@@ -1,49 +1,37 @@
-
 const express = require('express');
+const { contacts, addContact } = require('./agendaData.js');
 
 const app = express();
-const {contacts} = require('./agendaData.js')
 
+// Middleware JSON (debe estar en `app` antes de las rutas)
+app.use(express.json());
 
-
-
-
-
+const routerContactos = express.Router();
 const PORT = process.env.PORT || 3000;
 
+// Usar router
+app.use('/api/contacts', routerContactos);
 
-// Ruta de prueba
-
-app.get('/api/contacts', (req, res) => {
-    res.send(contacts);
+// Ruta para obtener todos los contactos
+routerContactos.get('/', (req, res) => {
+    res.json(contacts);
 });
 
+// Ruta para agregar un nuevo contacto
+routerContactos.post('/', (req, res) => {
+    console.log("Datos recibidos: exitosamente", req.body); 
 
-app.get('/api/contacts/:id', (req, res) => {
-  const { id } = req.params; 
-  const contact = contacts.find(contact => contact.id == id);
+    const { id, fullName, phoneNumber, email } = req.body;
 
-  if (contact) 
-    res.json(contact); 
-   else if(isNaN(id)){
-    res.status(400).send(`bad request ${res.statusCode}`); 
-  } else {
-    res.status( 404 ).json(`Not found ${res.statusCode}`)
-  }
+    if (!id || !fullName || !phoneNumber || !email) {
+        return res.status(400).json({ error: "Faltan datos" });
+    }
+
+    const newContact = { id, fullName, phoneNumber, email };
+    addContact(newContact);
+
+    res.status(201).json({ message: "Contacto agregado", contacts });
 });
-// app.get('/api/contacts/:name', (req, res) => {
-//   const { fullName } = req.params; 
-//   const contact = contacts.find(contact => contact.fullName == fullName);
-
-//   if (contact) {
-//     res.json(contact); 
-//   } else if () {
-
-//   } else {
-//     res.status(404).json({ message: 'Contacto no encontrado' }); 
-
-//   }
-// });
 
 // Iniciar servidor
 app.listen(PORT, () => {

@@ -1,22 +1,27 @@
+
 let contacts = [
   {
     id: 1,
     fullName: "Juan Perez",
-    phoneNumber: "+1 234 567 890",
+    phoneNumber: 8097884566,
     email: "juan.perez@example.com"
   },
   {
     id: 2,
     fullName: "Ana Gomez",
-    phoneNumber: "+1 987 654 321",
+    phoneNumber: 8496523354,
     email: "ana.gomez@example.com"
   },
   {
     id: 3,
     fullName: "Carlos Sanchez",
-    phoneNumber: "+1 321 654 987",
+    phoneNumber: 8295563655,
     email: "carlos.sanchez@example.com"
   }
 ];
 
-export {contacts}
+function addContact(contact) {
+  contacts.push(contact);
+}
+
+module.exports = { contacts, addContact };
