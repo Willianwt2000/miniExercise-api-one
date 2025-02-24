@@ -1,10 +1,5 @@
-api/node_modules/
-api/package-lock.json
-api/index.http
-crud/node_modules/
-agendaTelefonica/node_modules/
+
+index.http
 crud/src/users.ts
-crud/web/
-crud/package-lock.json
-newRoot/node_modules/
 package-lock.json
+node_modules

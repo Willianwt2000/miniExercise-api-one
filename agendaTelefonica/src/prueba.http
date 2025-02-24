@@ -10,5 +10,20 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:3000/api/contacts/ HTTP/1/1
+DELETE  http://localhost:3000/api/contacts/1 HTTP/1/1
+
+###
+put  http://localhost:3000/api/contacts/2 HTTP/1/1
+Content-Type: application/json
+
+{
+  "id": 5,
+  "fullName": "Ana Carmen",
+  "phoneNumber": "8496523788",
+  "email": "ana.gomez@example.com"
+}
+
+###
+GET  http://localhost:3000/api/contacts/2 HTTP/1/1
+Content-Type: application/json
 
