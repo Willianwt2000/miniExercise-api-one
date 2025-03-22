@@ -1,6 +1,8 @@
 const express = require('express');
-const crypto = require('node:crypto');
+const crypto = require('node:crypto'); // id aleatorio
 const movie = require('./data/movie.json');
+const { validateMovie, validatePartialMovie } = require('./schemas/movie.js');
+const { error } = require('node:console');
 const app = express();
 
 app.disable('x-powered-by');
@@ -29,13 +31,18 @@ app.get('/movies/:id', (req, res) => {
 //----------------------------------------------------
 
 app.post('/movies', (req, res) => {
-  // req.body deberíamos guardar en bbdd
-  console.log({message: "Update"});
+
+  const result = validateMovie(req.body)
+  if (result.error) {
+    return res.status(400).json({error: Json.parse(result.error.message)})
+  }
+ 
 
 
 
   const newMovie = {
     id:crypto.randomUUID(),//uuid id -- aleatorio
+    ...result.data
   }
   movie.push(newMovie)
   res.status(201).json(req.body);
@@ -46,9 +53,7 @@ app.post('/movies', (req, res) => {
 
 //------------------------------------------
 
-app.use(()=>{
-  res.send(`<h1>404</h1>`);
-})
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on port http://localhost:${PORT}`);
