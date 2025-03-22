@@ -1,4 +1,5 @@
 const express = require('express');
+const crypto = require('node:crypto');
 const movie = require('./data/movie.json');
 const app = express();
 
@@ -16,17 +17,34 @@ app.get('/movies', (req, res) => {
 app.get('/movies/:id', (req, res) => {
   const {id} = req.params;
   const idMovie = movie.find(idItem => idItem.id === id);
-  if (idMovie) return res.json(movie)
+  if (idMovie) {
+    console.log(idMovie)
+    res.json(idMovie);
+    return;
+  }
   console.log({message: "Movie not faoud"})
   res.json({message: 'Movie not found'});
 })
 
-// app.post('/pokemon', (req, res) => {
-//   // req.body deberíamos guardar en bbdd
-//   console.log({message: "Update"});
-//   console.log(req.body);
-//   res.status(201).json(req.body);
-// })
+//----------------------------------------------------
+
+app.post('/movies', (req, res) => {
+  // req.body deberíamos guardar en bbdd
+  console.log({message: "Update"});
+
+
+
+  const newMovie = {
+    id:crypto.randomUUID(),//uuid id -- aleatorio
+  }
+  movie.push(newMovie)
+  res.status(201).json(req.body);
+})
+
+
+
+
+//------------------------------------------
 
 app.use(()=>{
   res.send(`<h1>404</h1>`);

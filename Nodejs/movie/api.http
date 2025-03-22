@@ -2,7 +2,7 @@
 GET http://localhost:3000/movies
 
 ### Recuperar una película por id
-GET http://localhost:3000/movies/a391090-b938-42eb-b520-86ea0aa3917b
+GET http://localhost:3000/movies/241bf55d-b649-4109-af7c-0e6890ded3fc
 
 ### Recuperar todas las películas por un género
 GET http://localhost:3000/movies?genre=ACTION
