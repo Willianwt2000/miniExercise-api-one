@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors') // cores
 const crypto = require('node:crypto'); // id aleatorio
 const movie = require('./data/movie.json');
 const { validateMovie, validatePartialMovie } = require('./schemas/movie.js');
@@ -7,7 +8,8 @@ const app = express();
 
 app.disable('x-powered-by');
 //Midleware
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
 const PORT = process.env.PORT ?? 3000;
 
 //endpoints 
