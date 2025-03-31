@@ -82,6 +82,18 @@ app.patch('/movies/:id', (req, res) => {
 
 
 //------------------------------------------
+app.delete('/movies/:id', (req, res) => {
+const { id } = req.params
+const movieIndex = movie.findIndex(movie => movie.id === id)
+ 
+if (movieIndex === -1) {
+  return res.status(404).json({message: "Movie not found"})
+}
+
+  movie.splice(movieIndex,1)
+  console.log({message: `movie ${id} was deleted`})
+  return res.json({message: "Movie deleted"})
+})
 
 
 
